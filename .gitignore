@@ -2,3 +2,12 @@
 *.pyc
 conf.cfg
 .idea
+mobile/CleverHome/.classpath
+mobile/CleverHome/.project
+mobile/CleverHome/project.properties
+mobile/CleverHome/.settings
+mobile/CleverHome/gen
+mobile/CleverHome/bin
+mobile/CleverHome/proguard-project.txt
+*.class
+*.jar
