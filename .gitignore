@@ -11,3 +11,4 @@ mobile/CleverHome/bin
 mobile/CleverHome/proguard-project.txt
 *.class
 *.jar
+logs
