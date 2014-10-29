@@ -18,7 +18,7 @@ def function_result(db_name,  results):
             value = value.split('\'')[0]
 
     db = sqlite3.connect(db_name)
-    db.execute('create table if not exists ' + 'proc_term232' + ' (datetime integer PRIMARY KEY, temperature integer)')
+    db.execute('create table if not exists ' + 'proc_temp' + ' (datetime integer PRIMARY KEY, temperature integer)')
 
     now = datetime.now()
     if value is not None:
