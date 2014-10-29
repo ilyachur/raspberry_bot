@@ -23,7 +23,7 @@ def function_result(db_name,  results):
     now = datetime.now()
     if value is not None:
         db.execute('INSERT INTO ' + 'raspberry_home_cputemperature' + '(datetime, temperature) '
-        'VALUES(' + str(now) + ', ' + str(value) + ')')
+        'VALUES(' + str(int(time.mktime(now.timetuple()))) + ', ' + str(value) + ')')
 
     db.commit()
     db.close()
