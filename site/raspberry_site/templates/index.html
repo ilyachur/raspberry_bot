@@ -1,9 +1,15 @@
 {% extends "base.html" %}
 
 {% block title %}
-	AWR Web Interface | Main page
+	Clever Home | Main page
+{% endblock %}
+
+{% block head_data %}
+	{% load staticfiles %}
+	<link href="{% static "styles/style_index.css" %}" rel="stylesheet" type="text/css">
 {% endblock %}
 
 {% block content %}
-	<h1> Hello!!!!</h1>
+	<h1>Hello!</h1>
+    <img src="sample"/>
 {% endblock %}

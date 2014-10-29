@@ -1,0 +1,83 @@
+label {
+	font-weight: normal;
+}
+
+div .search_queue {
+	width: 90%;
+	padding-right: 15px;
+	padding-left: 15px;
+	float: left;
+}
+
+div .search_button {
+	width: 10%; 
+	text-align: center;
+	padding-right: 15px;
+	padding-left: 15px;
+	float: left;
+}
+
+.options_link {
+	clear: both;
+}
+
+div .options_text {
+	float: left;
+    margin: 2px;
+    padding-right: 5px;
+}
+
+div .options_field {
+	font-size: 12px;
+	float: left;
+	vertical-align: middle;
+	margin: 2px;
+	padding-right: 5px;
+}
+
+.report_header {
+	margin-left: 20px;
+	font-size: 20px;
+}
+
+.glyphicon {
+	margin-right: 5px;
+}
+
+.table_form {
+	width:100%;
+	margin: 0;
+	padding: 0;
+}
+
+.small_cell {
+	text-align: center;
+	width: 2%;
+}
+
+.project_cell {
+	width: 26%;
+}
+
+.report_cell {
+	width: 14%;
+}
+
+.export_logo {
+	height: 30px;
+	width: 30px;
+	background-size: 30px 30px;
+	background-repeat:no-repeat;
+	margin-left: 5px;
+	margin-right: 5px;
+	float: left;
+}
+
+.html_logo {
+	background-image:url(../img/HTML.png);
+}
+
+.excel_logo {
+	background-image:url(../img/excel.png);
+}
+

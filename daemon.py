@@ -1,4 +1,5 @@
 from common.gmail_worker import GMailWorker
+import argparse
 import sys
 import os
 
@@ -21,15 +22,19 @@ def parcer_conf(conf_name):
 
 if __name__=='__main__':
     os.chdir(os.path.abspath(os.path.dirname(sys.argv[0])))
-    if len(sys.argv) > 1 and os.path.exists(sys.argv[1]):
-        cfg = parcer_conf(sys.argv[1])
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--conf', dest='conf', action='store', help='Configure file')
+    args = parser.parse_args()
+    if 'conf' in args:
+        cfg = parcer_conf(args['conf'])
     elif os.path.exists('conf.cfg'):
         cfg = parcer_conf('conf.cfg')
     else:
         exit('Error config file cannot be found!!!')
 
-    gmw = GMailWorker(username=cfg['bot_gmail_username'], password=cfg['bot_gmail_password'])
-    gmw.run()
+    #gmw = GMailWorker(username=cfg['bot_gmail_username'], password=cfg['bot_gmail_password'])
+    #gmw.run()
 
-    while gmw.is_alive():
-        pass
+    #while gmw.is_alive():
+    #    pass

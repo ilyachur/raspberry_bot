@@ -1,0 +1,43 @@
+p {
+	margin-left: 20px;
+}
+
+div .job_block {
+	margin: 0 20px 0 20px;
+	padding: 10px 5px 5px 5px;
+	border-bottom: 1px solid #ddd;
+}
+
+div .info_row {
+	width: 100%;
+	display: inline-block;
+}
+
+div .progress {
+	padding: 0;
+	margin: 0;
+}
+
+div .col8 {
+	width: 12.5%;
+	position: relative;
+	float: left;
+	padding: 5px;
+	word-wrap: break-word;
+}
+
+div .col9 {
+	width: 11.11%;
+	position: relative;
+	float: left;
+	padding: 0 10px 0 10px;
+	word-wrap: break-word;
+}
+
+.glyphicon-remove {
+	color: #D43F3A;
+}
+
+.glyphicon-repeat {
+	color: #449D44;
+}

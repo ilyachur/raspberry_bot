@@ -1,0 +1,163 @@
+@font-face
+{
+	src: url(NeoSansIntel.ttf);
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	min-width: 800px;
+}
+
+p {
+	margin-left: 10px;
+}
+
+h1 {
+	margin-left: 20px;
+}
+
+form {
+    display: inline-block;
+    width: 95%;
+    margin-left: 10px;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+	background: #FFF;
+	margin: 0;
+	position: absolute;
+}
+
+/* HEADER STYLES START */
+
+.header {
+	height: auto;
+	background-color: #00bfff;
+}
+
+.header_logo {
+	width: 150px;
+	height: 100px;
+	background-image:url(../img/home_icon.png);
+	background-repeat:no-repeat;
+	float: left;
+}
+
+.header p {
+	margin: 0;
+	max-height:100px;
+	line-height:100px;
+	padding: 0 150px 0 0;
+	vertical-align:middle;
+	text-align: center;
+	color: #FFFFFF;
+	font-size: 48px;
+}
+
+/* HEADER STYLES END */
+
+/* USER MESSAGE START */
+.user_line {
+    color: #FFFFFF;
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    font-size: 12px;
+}
+
+.user_line a:link {
+    color:#FFFFFF;
+    text-decoration: underline;
+}
+.user_line a:visited {
+    color: #FFFFFF;
+    text-decoration: underline;
+}
+.user_line a:hover, .user_line a:active, .user_line a:focus {
+    text-decoration: none;
+}
+/* USER MESSAGE END */
+
+/* NAVIGATION STYLES START */
+
+.nav-tabs {
+    border-bottom: 1px solid #ddd;
+}
+.nav-tabs > ul > li {
+    float: left;
+    display: inline-block;
+}
+.nav-tabs > li > a {
+    margin-right: 2px;
+    line-height: 1.428571429;
+    border: 1px solid transparent;
+    border-radius: 4px 4px 0 0;
+    background-color: #fff;
+    border-bottom-color: transparent;
+    border-color: #eee #eee #ddd;
+}
+.nav-tabs > li > a:hover {
+    border-color: #eee #eee #ddd;
+}
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+    color: #555;
+    cursor: default;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-bottom-color: transparent;
+}
+
+/* NAVIGATION STYLES END */
+
+/* CONTENT STYLES START */
+
+.content {
+	padding: 10px 0;
+	text-align:justify;
+	min-height: 500px;
+}
+
+/* CONTENT STYLES END */
+
+/* FOOTER STYLES START */
+	
+.footer {
+	margin-top: 10px;
+	background-color: #FFFFFF;
+	border-top:1px dashed #4E5869;
+	position:fixed;
+	left:0px;
+	bottom:0px;
+	width:100%
+}
+
+.footer p {
+	margin: 0;
+	padding: 0;
+	line-height: 30px;
+	vertical-align:middle;
+	font-size:12px;
+	text-align: center;
+	color:#4E5869;
+}
+
+/* FOOTER STYLES END */
+
+form .bg-danger {
+    margin: 5px 0 5px 0;
+    padding: 3px;
+    width: 80%;
+    text-align: center;
+    display: inline-block;
+    border-radius:10px; 
+    -webkit-border-radius:6px; 
+    -moz-border-radius:6px; 
+    -khtml-border-radius:6px;
+    border: 1px solid #a94442;
+}
