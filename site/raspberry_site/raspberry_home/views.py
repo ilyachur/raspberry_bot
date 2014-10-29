@@ -10,6 +10,8 @@ from reportlab.lib import colors
 from reportlab.graphics.charts.legends import Legend
 from reportlab.graphics.charts.textlabels import Label
 from reportlab.graphics.widgets.markers import makeMarker
+from raspberry_home.models import ProcessTepm
+
 
 class MyLineChartDrawing(Drawing):
     def __init__(self, width=600, height=400, *args, **kw):
@@ -105,6 +107,7 @@ def index(request):
 gl_data = [[1,1], [2,2], [2.5,1], [3,3], [4,5]]
 gl_index = 5
 
+@property
 def linechart(request):
     global gl_index, gl_data
     gl_data.append([gl_index, 10])
@@ -152,4 +155,5 @@ def graph_png():
 if __name__=='__main__':
     #use the standard 'save' method to save barchart.gif, barchart.pdf etc
     #for quick feedback while working.
-    MyLineChartDrawing().save(formats=['png'],outDir='.',fnRoot='dynamic_graph')
+    #MyLineChartDrawing().save(formats=['png'],outDir='.',fnRoot='dynamic_graph')
+    items = ProcessTepm.objects.all()

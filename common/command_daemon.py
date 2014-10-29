@@ -18,11 +18,12 @@ def function_result(db_name,  results):
             value = value.split('\'')[0]
 
     db = sqlite3.connect(db_name)
-    db.execute('create table if not exists ' + 'proc_temp' + ' (datetime integer PRIMARY KEY, temperature integer)')
+    #db.execute('create table if not exists ' + 'raspberry_home_cputemperature' + ' (datetime integer PRIMARY KEY, temperature integer)')
 
     now = datetime.now()
     if value is not None:
-        db.execute('INSERT INTO ' + 'proc_temp' + '(datetime, temperature) VALUES(' + str(int(time.mktime(now.timetuple()))) + ', ' + str(value) + ')')
+        db.execute('INSERT INTO ' + 'raspberry_home_cputemperature' + '(datetime, temperature) '
+        'VALUES(' + str(now) + ', ' + str(value) + ')')
 
     db.commit()
     db.close()
