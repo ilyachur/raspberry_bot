@@ -1,6 +1,7 @@
 from datetime import datetime
 from threading import Thread
-from common import routines
+#from common import routines
+import routines
 import sqlite3
 
 
@@ -29,7 +30,16 @@ class CommandDaemon(Thread):
     def run(self):
         if self.db_function:
             ret_info = routines.shell('/opt/vc/bin/vcgencmd measure_temp')
-            self.db_function(self.db, None)
+            print ret_info[1]
+            for line in ret_info[1].split('\n'):
+                if len(line.split('=')) != 2:
+                    continue
+                key, value = line.split('=')
+                key = key.rstrip()
+                key = key.lstrip()
+                print key
+                print value.split('\'')[0]
+            #self.db_function(self.db, ret_info[2])
 
 import time
 if __name__=='__main__':
