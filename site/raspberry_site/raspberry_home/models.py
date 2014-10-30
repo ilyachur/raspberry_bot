@@ -6,4 +6,4 @@ class CPUTemperature(models.Model):
     temperature = models.FloatField()
 
     def __unicode__(self):
-        return self.temperature
+        return str(self.datetime) + ' ' + str(self.temperature)

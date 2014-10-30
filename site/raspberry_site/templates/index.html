@@ -7,9 +7,72 @@
 {% block head_data %}
 	{% load staticfiles %}
 	<link href="{% static "styles/style_index.css" %}" rel="stylesheet" type="text/css">
+    <script class="include" type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{% static "js/jquery.jqplot.min.js" %}"></script>
 {% endblock %}
 
 {% block content %}
-	<h1>Hello!</h1>
-    <img src={{ linechart }}/>
+    <div id="con"></div>
+	<h1>Домашний сайт</h1>
+	<p>Привет! Это домашний сайт, для отслеживания состояний компьютера Raspberry Pi B+, который служит в качестве
+	сервера управления умным домом.</p>
+	<p>График температуры процессора:</p>
+    <div id="chart2" style="height:300px; width:500px;"></div>
+
+    <script class="code" type="text/javascript">
+
+    function draw_graph() {
+        var arr = {{ proc_temp }};
+        //var ticks = {{ data_temp }};
+        //[arr, [3,7,9,1,5,3,8,2,5]]
+        var plot2 = $.jqplot ('chart2', [arr], {
+              // Give the plot a title.
+              title: 'Raspberry process temperature plot',
+              // You can specify options for all axes on the plot at once with
+              // the axesDefaults object.  Here, we're using a canvas renderer
+              // to draw the axis label which allows rotated text.
+              axesDefaults: {
+                labelRenderer: $.jqplot.CanvasAxisLabelRenderer
+              },
+               series: [
+                {label: 'Processor temperature'},
+               ],
+              // Likewise, seriesDefaults specifies default options for all
+              // series in a plot.  Options specified in seriesDefaults or
+              // axesDefaults can be overridden by individual series or
+              // axes options.
+              // Here we turn on smoothing for the line.
+              seriesDefaults: {
+                  rendererOptions: {
+                      smooth: true
+                  }
+              },
+              // An axes object holds options for all axes.
+              // Allowable axes are xaxis, x2axis, yaxis, y2axis, y3axis, ...
+              // Up to 9 y axes are supported.
+              axes: {
+                // options for each axis are specified in seperate option objects.
+                xaxis: {
+                  label: "Time",
+                  //ticks: ticks,
+                  //ticks: ticks,
+                  // Turn off "padding".  This will allow data point to lie on the
+                  // edges of the grid.  Default padding is 1.2 and will keep all
+                  // points inside the bounds of the grid.
+                  pad: 0
+                },
+                yaxis: {
+                  label: "Process Temperarute"
+                }
+              }
+            });
+    }
+
+    $(document).ready(function(){
+        draw_graph();
+    });
+
+
+</script>
+
 {% endblock %}
