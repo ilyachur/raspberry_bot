@@ -24,16 +24,6 @@ sudo chmod +x /etc/init.d/raspberry_server
 sudo update-rc.d raspberry_server defaults
 ```
 
-##### Configure Plugins. Instructions in following README.md files
-
-* plugins/dropbox/README.md
-* plugins/github/README.md
-* plugins/googledrive/README.md
-
-```sh
-node app
-```
-
 
 License
 ----
