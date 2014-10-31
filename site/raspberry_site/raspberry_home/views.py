@@ -14,6 +14,8 @@ def index(request):
     gpio_data['data_temp'] = data['data']
     gpio_data['proc_temp'] = data['temp']
     print(gpio_data)
+    with open('/home/pi/1.txt', 'w') as f:
+        f.write(str(gpio_data))
     c = Context(gpio_data)
     return HttpResponse(t.render(c))
 
@@ -38,7 +40,8 @@ def check_gpio():
 
         for gpio_num in numbers:
             GPIO.setup(gpio_num, GPIO.OUT)
-            if GPIO.input(gpio_num):
+            print str(gpio_num) + ' ' + str( GPIO.input(gpio_num))
+            if not GPIO.input(gpio_num):
                 hash['gpio_' + str(gpio_num)] = 'on'
             else:
                 hash['gpio_' + str(gpio_num)] = 'off'
