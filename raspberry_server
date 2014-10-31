@@ -14,7 +14,7 @@
 case "$1" in 
     start)
         echo "Starting raspberry_server"
-        python /home/pi/raspberry_bot/site/raspberry_site/manage.py runserver 192.168.1.4:8000 &
+        sudo python /home/pi/raspberry_bot/site/raspberry_site/manage.py runserver 192.168.1.4:8000 &
         ;;
     stop)
         echo "Stopping raspberry_server"

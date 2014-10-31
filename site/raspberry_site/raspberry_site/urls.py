@@ -1,7 +1,6 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from raspberry_home.views import index
-from raspberry_home.views import linechart
 from raspberry_home.views import cpu_temp_db
 
 urlpatterns = patterns('',
@@ -11,6 +10,5 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', index),
-    url(r'sample/$', linechart, name="graph"),
     url(r'^cpu_temp/$', cpu_temp_db),
 )

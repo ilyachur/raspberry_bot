@@ -47,6 +47,61 @@ form {
 	float: left;
 }
 
+.GPIO_power3 {
+	width: 100px;
+	height: 100px;
+	background-size: 100%;
+	background-image:url(../img/GPIO/power_3v.png);
+	background-repeat:no-repeat;
+	float: left;
+}
+
+.GPIO_power5 {
+	width: 100px;
+	height: 100px;
+	background-size: 100%;
+	background-image:url(../img/GPIO/power_5v.png);
+	background-repeat:no-repeat;
+	float: left;
+}
+
+.GPIO_off {
+	width: 100px;
+	height: 100px;
+	background-size: 100%;
+	background-image:url(../img/GPIO/off.png);
+	background-repeat:no-repeat;
+	float: left;
+}
+
+.GPIO_on {
+	width: 100px;
+	height: 100px;
+	background-size: 100%;
+	background-image:url(../img/GPIO/on.png);
+	background-repeat:no-repeat;
+	float: left;
+}
+
+
+.GPIO_ground {
+	width: 100px;
+	height: 100px;
+	background-size: 100%;
+	background-image:url(../img/GPIO/ground.png);
+	background-repeat:no-repeat;
+	float: left;
+}
+
+.GPIO_id_eeprom {
+	width: 100px;
+	height: 100px;
+	background-size: 100%;
+	background-image:url(../img/GPIO/id_eeprom.png);
+	background-repeat:no-repeat;
+	float: left;
+}
+
 .header p {
 	margin: 0;
 	max-height:100px;
