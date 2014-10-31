@@ -12,3 +12,4 @@ mobile/CleverHome/proguard-project.txt
 *.class
 *.jar
 logs
+site/raspberry_site/db/
