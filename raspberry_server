@@ -1,0 +1,29 @@
+#!/bin/sh
+# /etc/init.d/raspberry_server
+
+### BEGIN INIT INFO
+# Provides:          raspberry_server
+# Required-Start:    $remote_fs $syslog
+# Required-Stop:     $remote_fs $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Example initscript
+# Description:       This service is used to manage a servo
+### END INIT INFO
+
+case "$1" in 
+    start)
+        echo "Starting raspberry_server"
+        python /home/pi/raspberry_bot/site/raspberry_site/manage.py runserver 192.168.1.4:8000 &
+        ;;
+    stop)
+        echo "Stopping raspberry_server"
+        killall python
+        ;;
+    *)
+        echo "Usage: /etc/init.d/raspberry_server start|stop"
+        exit 1
+        ;;
+esac
+
+exit 0
