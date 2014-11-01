@@ -1,9 +1,8 @@
 from datetime import datetime
 from django.template import loader, Context
 from django.http import HttpResponse
-
 from raspberry_home.models import CPUTemperature
-
+import warnings
 
 # Create your views here.
 def index(request):
@@ -36,9 +35,21 @@ def check_gpio():
         GPIO.setmode(GPIO.BOARD)
 
         for gpio_num in numbers:
-            GPIO.setup(gpio_num, GPIO.OUT)
+            in_port = True
+            with warnings.catch_warnings(record=True) as w:
+                warnings.simplefilter("always")
+                GPIO.setup(gpio_num, GPIO.OUT)
+                w = filter(lambda i: issubclass(i.category, RuntimeWarning), w)
+                if len(w):
+                    in_port = False
+                    # do something with the first warning
+                    #print(w[0].message)
+
             if not GPIO.input(gpio_num):
-                hash['gpio_' + str(gpio_num)] = 'on'
+                if in_port:
+                    hash['gpio_' + str(gpio_num)] = 'on_in'
+                else:
+                    hash['gpio_' + str(gpio_num)] = 'on_out'
             else:
                 hash['gpio_' + str(gpio_num)] = 'off'
 
