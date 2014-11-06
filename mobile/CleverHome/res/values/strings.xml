@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="app_name">CleverHome</string>
-    <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
 
+    <string name="HOME">HOME group</string>
+    <string name="HOME_STATUS">HOME status</string>
+    <string name="HOME_POWER">HOME power</string>
+    <string name="TEST">TEST group</string>
+    <string name="TEST_SUB">TEST group</string>
 </resources>
