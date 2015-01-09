@@ -12,22 +12,18 @@ def get_status(src_list):
 
 
     ret_info = routines.shell("cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq")
-    line += "CPU_FREQ_MIN=" + ret_info[1].decode("utf-8") + "KHz" + '\n'
+    line += "CPU_FREQ_MIN=" + ret_info[1].decode("utf-8").lstrip().rstrip() + " KHz" + '\n'
     ret_info = routines.shell("cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq")
-    line += "CPU_FREQ_MAX=" + ret_info[1].decode("utf-8") + "KHz" + '\n'
+    line += "CPU_FREQ_MAX=" + ret_info[1].decode("utf-8").lstrip().rstrip() + " KHz" + '\n'
     ret_info = routines.shell("cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq")
-    line += "CPU_FREQ_CUR=" + ret_info[1].decode("utf-8") + "KHz" + '\n'
+    line += "CPU_FREQ_CUR=" + ret_info[1].decode("utf-8").lstrip().rstrip() + " KHz" + '\n'
 
 
     ret_info = routines.shell("free -o -h")
     line += ret_info[1].decode("utf-8") + '\n'
 
     ret_info = routines.shell("/opt/vc/bin/vcgencmd get_mem gpu  | sed 's/[A-Za-z]*//g' | cut -c 2-")
-    line += "GPU_MEM=" + ret_info[1].decode("utf-8") + "Mb" + '\n'
-
-    line = """Status: good
-Work: Normal
-Temperature: 34 Grad"""
+    line += "GPU_MEM=" + ret_info[1].decode("utf-8").lstrip().rstrip() + " Mb" + '\n'
     return line
 
 commands_list = {

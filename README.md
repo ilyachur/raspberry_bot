@@ -19,7 +19,7 @@ Installation
 
 For auto start it is necessary to do:
 ```sh
-sudo cp raspbery_server /etc/init.d/raspberry_server
+sudo cp raspberry_server /etc/init.d/raspberry_server
 sudo chmod +x /etc/init.d/raspberry_server
 sudo update-rc.d raspberry_server defaults
 ```
