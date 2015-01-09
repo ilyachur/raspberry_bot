@@ -1,10 +1,15 @@
 package com.home.CleverHome;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -57,6 +62,30 @@ public class MainActivity extends Activity {
         });
     }
 
+    private boolean isNetworkConnected() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo ni = cm.getActiveNetworkInfo();
+        if (ni == null) {
+            // There are no active networks.
+            AlertDialog.Builder netDialogBuild = new AlertDialog.Builder(this);
+            netDialogBuild.setTitle(getString(R.string.no_connection_title));
+            netDialogBuild.setMessage(getString(R.string.no_connection_body));
+            netDialogBuild.setPositiveButton(R.string.btn_try_again, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    isNetworkConnected();
+                }
+            });
+            netDialogBuild.setNegativeButton(R.string.btn_cancel, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    finish();
+                }
+            });
+            netDialogBuild.show();
+            return false;
+        } else
+            return true;
+    }
+
     public void onResume() {
         super.onResume();
 
@@ -69,6 +98,7 @@ public class MainActivity extends Activity {
         editor.putString("email_password", "AAAA");
 
         editor.commit();
+        isNetworkConnected();
 
         app_password = settings.getString("app_password", "");
         if (app_password.equals("")) {

@@ -8,6 +8,11 @@
     <string name="TEST">TEST group</string>
     <string name="TEST_SUB">TEST group</string>
 
+    <!-- Start window -->
+    <string name="no_connection_title">Нет интернет соединения!</string>
+    <string name="no_connection_body">Проверьте интернет соединение и повторите попытку.</string>
+    <string name="btn_try_again">Еще раз</string>
+
     <!-- Main menu -->
     <string name="status">Статус</string>
     <string name="gpio">GPIO</string>

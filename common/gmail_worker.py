@@ -78,7 +78,7 @@ class GMailWorker(Daemon):
                     if re.compile('>$').search(ret_addr):
                         ret_addr = re.compile('>$').sub('', ret_addr)
 
-                    #subject=msg['subject']
+                    subject=msg['subject']
                     #print(subject)
                     payload=msg.get_payload()
                     body = self.extract_body(payload)
@@ -91,13 +91,13 @@ class GMailWorker(Daemon):
                         command, value = self.check_command_and_value(command, value)
 
                         if command in commands.commands_list.keys():
-                            result = commands.send_command(msg['subject'], command, value)
+                            result = commands.send_command(command, value)
                             if result is not None:
                                 command_execute.append("Command %s with value %s executed. Result:\n"
-                                                        " %s" % (command, value, msg['subject'], result))
+                                                        " %s" % (command, value, result))
                             else:
-                                command_execute.append("Command %s with value %s for group %s "
-                                                        "executed" % (command, value, msg['subject']))
+                                command_execute.append("Command %s with value %s "
+                                                        "executed." % (command, value))
                         else:
                             command_error.append("Command %s is not found!" % command)
             if len(command_execute) + len(command_error) == 0:
@@ -105,12 +105,11 @@ class GMailWorker(Daemon):
             now = datetime.now()
             msg_out = 'Time: %s\n\n' % now
             msg_out += 'Your '
+            msg_sub = subject + ' executed'
             if len(command_execute) + len(command_error) > 1:
                 msg_out += 'commands executed '
-                msg_sub = 'Commands executed'
             else:
                 msg_out += 'command executed '
-                msg_sub = 'Command executed'
 
             if len(command_error) > 0:
                 if len(command_error) > 1:
