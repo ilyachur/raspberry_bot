@@ -7,9 +7,11 @@ mobile/CleverHome/.project
 mobile/CleverHome/project.properties
 mobile/CleverHome/.settings
 mobile/CleverHome/gen
+mobile/CleverHome/out
 mobile/CleverHome/bin
 mobile/CleverHome/proguard-project.txt
 *.class
 *.jar
+*.apk
 logs
 #site/raspberry_site/db/

@@ -7,4 +7,35 @@
     <string name="HOME_POWER">HOME power</string>
     <string name="TEST">TEST group</string>
     <string name="TEST_SUB">TEST group</string>
+
+    <!-- Main menu -->
+    <string name="status">Status</string>
+    <string name="gpio">GPIO</string>
+    <string name="opportunities">Opportunities</string>
+    <string name="about">About</string>
+    <string name="exit">Exit</string>
+    <string name="settings">Settings</string>
+
+    <!-- Settings menu -->
+    <string name="text_input_old_password">Please input old password:</string>
+    <string name="text_input_new_password">Please input new password:</string>
+    <string name="text_confirm_new_password">Please confirm new password:</string>
+    <string name="text_input_email_address">Please input e-mail address:</string>
+    <string name="text_input_password_email">Please input password for e-mail address:</string>
+    <string name="text_input_bot_email">Please input e-mail address for Raspberry agent:</string>
+    <string name="btn_save">Save</string>
+    <string name="btn_cancel">Cancel</string>
+
+    <!-- hints -->
+    <string name="hint_input_password">Please, input password</string>
+    <string name="hint_incorrect_password">Incorrect password!</string>
+
+    <!-- Errors -->
+    <string name="err_not_all_fields">Please, set all fields!</string>
+    <string name="err_incorrect_old_pwd">Incorrect old application password!</string>
+    <string name="err_confirm_failed">New password and confirm new password fields are not equal!</string>
+    <string name="err_email_address_empty">Please, input email address!</string>
+    <string name="err_email_pwd_empty">Please, input password for email!</string>
+    <string name="err_first_app_run_pwd">Please, input application password!</string>
+    <string name="err_bot_email_address_empty">Please, input email address for Raspberry Agent!</string>
 </resources>

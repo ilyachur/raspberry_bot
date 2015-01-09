@@ -93,7 +93,7 @@ class GMailWorker(Daemon):
                         if command in commands.commands_list.keys():
                             result = commands.send_command(msg['subject'], command, value)
                             if result is not None:
-                                command_execute.append("Command %s with value %s for group %s executed. Result:\n"
+                                command_execute.append("Command %s with value %s executed. Result:\n"
                                                         " %s" % (command, value, msg['subject'], result))
                             else:
                                 command_execute.append("Command %s with value %s for group %s "

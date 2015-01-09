@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_margin="10dp"
+            android:orientation="vertical" >
+
+        <TextView
+                android:id="@+id/status"
+                style="@style/MenuFont"
+                android:layout_gravity="right"
+                android:text="@string/status"
+                android:onClick="onStatus"/>
+        <TextView
+                android:id="@+id/gpio"
+                style="@style/MenuFont"
+                android:text="@string/gpio" />
+        <TextView
+                android:id="@+id/opportunities"
+                style="@style/MenuFont"
+                android:text="@string/opportunities" />
+        <TextView
+                android:id="@+id/settings"
+                style="@style/MenuFont"
+                android:text="@string/settings"
+                android:onClick="onSettings"/>
+        <TextView
+                android:id="@+id/about"
+                style="@style/MenuFont"
+                android:text="@string/about" />
+        <TextView
+                android:id="@+id/exit"
+                style="@style/MenuFont"
+                android:text="@string/exit"
+                android:onClick="onExit"/>
+    </LinearLayout>
+
+
+</RelativeLayout>

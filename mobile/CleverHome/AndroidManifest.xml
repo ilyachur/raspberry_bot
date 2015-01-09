@@ -3,8 +3,10 @@
           package="com.home.CleverHome"
           android:versionCode="1"
           android:versionName="1.0">
-    <uses-sdk android:minSdkVersion="10"/>
-    <application android:label="@string/app_name">
+    <uses-sdk android:minSdkVersion="19"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application android:icon="@drawable/main_icon" android:label="@string/app_name">
         <activity android:name="MainActivity"
                   android:label="@string/app_name">
             <intent-filter>
@@ -12,5 +14,9 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name=".SettingsActivity"/>
+        <activity android:name=".MenuActivity"/>
+        <activity android:name=".MainMenuActivity"/>
+        <activity android:name=".StatusActivity"/>
     </application>
 </manifest> 

@@ -117,6 +117,8 @@ public class MainMenuListAdapter extends BaseExpandableListAdapter {
                 SampleItem.POWER),
 
         TEST(R.string.TEST,
+                SampleItem.TEST,
+                SampleItem.TEST,
                 SampleItem.TEST);
 
         public int titleId;
