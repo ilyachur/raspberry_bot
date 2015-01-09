@@ -43,4 +43,7 @@
     <string name="err_email_pwd_empty">Пожалуйста введите пароль от электронной почты!</string>
     <string name="err_first_app_run_pwd">Пожалуйста введите пароль для приложения!</string>
     <string name="err_bot_email_address_empty">Пожалуйста введите адрес электронной почты для Raspberry!</string>
+    <string name="err_send_mail">Невозможно отправить сообщение!</string>
+    <string name="err_read_mail">Невозможно прочитать сообщения!</string>
+    <string name="err_update">Не получилось обновить информацию!</string>
 </resources>

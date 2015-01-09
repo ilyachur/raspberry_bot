@@ -1,7 +1,7 @@
 def get_status(src_list):
     line = """Status: good
-    Work: Normal
-    Temperature: 34 Grad"""
+Work: Normal
+Temperature: 34 Grad"""
     return line
 
 commands_list = {

@@ -23,29 +23,15 @@ class GMailWorker(Daemon):
     def __init__(self, username, password, timeout = 1, kill_time = None):
         Daemon.__init__(self, timeout, kill_time)
 
-        self.conn = imaplib.IMAP4_SSL(GMAIL_HOST, GMAIL_PORT)
-
         self.user = username
         self.password = password
 
-        try:
-            self.conn.login(self.user, self.password)
-        except imaplib.IMAP4.error:
-            raise GMailException,"Login Failed!!!"
-
-        #rv, mailboxes = self.conn.list()
+        #rv, mailboxes = conn.list()
         #if rv == 'OK':
         #    print "Mailboxes:"
         #    print mailboxes
 
         self.need_stop = False
-
-    def __del__(self):
-        try:
-            self.conn.close()
-        except:
-            pass
-        self.conn.logout()
 
     def extract_body(self, payload):
         if isinstance(payload,str):
@@ -53,16 +39,19 @@ class GMailWorker(Daemon):
         else:
             return '\n'.join([self.extract_body(part.get_payload()) for part in payload])
 
-    def pre_run(self):
-        self.conn.select('INBOX')
-
-    def post_run(self):
-        self.conn.select()
-
     def run_processing(self):
-        typ, data = self.conn.search(None, 'UNSEEN')
+        conn = imaplib.IMAP4_SSL(GMAIL_HOST, GMAIL_PORT)
+
+        try:
+            conn.login(self.user, self.password)
+        except imaplib.IMAP4.error:
+            raise GMailException,"Login Failed!!!"
+
+        conn.select('INBOX')
+
+        typ, data = conn.search(None, '(UNSEEN)')
         for num in data[0].split():
-            typ, msg_data = self.conn.fetch(num, '(RFC822)')
+            typ, msg_data = conn.fetch(num, '(RFC822)')
 
             command_execute = []
             command_error = []
@@ -93,8 +82,7 @@ class GMailWorker(Daemon):
                         if command in commands.commands_list.keys():
                             result = commands.send_command(command, value)
                             if result is not None:
-                                command_execute.append("Command %s with value %s executed. Result:\n"
-                                                        " %s" % (command, value, result))
+                                command_execute.append("%s" % (str(result)))
                             else:
                                 command_execute.append("Command %s with value %s "
                                                         "executed." % (command, value))
@@ -103,41 +91,30 @@ class GMailWorker(Daemon):
             if len(command_execute) + len(command_error) == 0:
                 continue
             now = datetime.now()
-            msg_out = 'Time: %s\n\n' % now
-            msg_out += 'Your '
-            msg_sub = subject + ' executed'
-            if len(command_execute) + len(command_error) > 1:
-                msg_out += 'commands executed '
-            else:
-                msg_out += 'command executed '
+            msg_out = ''
 
             if len(command_error) > 0:
-                if len(command_error) > 1:
-                    msg_out += 'with %s errors.\n' % len(command_error)
-                else:
-                    msg_out += 'with error.\n'
+                msg_out += 'Execution status: failed\n'
             else:
-                msg_out += 'without errors.\n'
+                msg_out += 'Execution status: passed\n'
 
-            if len(command_execute) == 0:
-                msg_out += 'Passed commands are not found!\n'
-            else:
-                msg_out += 'Passed commands:\n'
+            if len(command_execute):
                 for str_com in command_execute:
                     msg_out += str_com + '\n'
             msg_out += '\n\n\n'
-            if len(command_error) == 0:
-                msg_out += 'Failed commands are not found!\n'
-            else:
+            if len(command_error):
                 msg_out += 'Failed commands:\n'
                 for str_com in command_error:
                     msg_out += str_com + '\n'
-            msg_out += '\n\n\n'
-            msg_out += '--\nBest regards\nRaspberry Pi (Clever home bot).\n\nTime: %s' % now
-            send_mail(self.user, self.password, [ret_addr], msg_sub, msg_out)
+            send_mail(self.user, self.password, [ret_addr], subject + " executed", msg_out)
 
-            #typ, response = self.conn.store(num, '+FLAGS', r'(\Seen)')
-            self.conn.store(num, '+FLAGS', r'(\Seen)')
+            #typ, response = conn.store(num, '+FLAGS', r'(\Seen)')
+            conn.store(num, '+FLAGS', r'(\Seen)')
+        try:
+            conn.close()
+            conn.logout()
+        except:
+            pass
 
 
     def check_command_and_value(self, command, value):

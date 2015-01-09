@@ -1,8 +1,6 @@
 package com.home.CleverHome;
 
-
-import android.util.Log;
-
+import java.io.IOException;
 import java.security.Security;
 import java.util.Properties;
 
@@ -35,31 +33,35 @@ public class MailWorker extends Authenticator {
         return new PasswordAuthentication(user, password);
     }
 
-    public synchronized String readMail(String subject) {
+    public synchronized String readMail(String subject) throws Exception {
         Properties props = new Properties();
         String info = new String ();
         props.setProperty("mail.store.protocol", "imaps");
-        try {
-            Session session = Session.getInstance(props, null);
-            Store store = session.getStore();
-            store.connect("imap.gmail.com", user, password);
-            Folder inbox = store.getFolder("INBOX");
-            inbox.open(Folder.READ_WRITE);
-            inbox.getUnreadMessageCount();
-            Message [] messages = inbox.getMessages();
-            FlagTerm ft = new FlagTerm(new Flags(Flags.Flag.SEEN), false);
-            messages = inbox.search(ft);
-            for (Message msg : messages) {
-                if (msg.getSubject().equals(subject + " executed")) {
+        Session session = Session.getInstance(props, null);
+        Store store = session.getStore();
+        store.connect("imap.gmail.com", user, password);
+        Folder inbox = store.getFolder("INBOX");
+        inbox.open(Folder.READ_WRITE);
+        inbox.getUnreadMessageCount();
+        Message [] messages = inbox.getMessages();
+        FlagTerm ft = new FlagTerm(new Flags(Flags.Flag.SEEN), false);
+        messages = inbox.search(ft);
+        for (Message msg : messages) {
+            if (msg.getSubject().equals(subject + " executed")) {
+                try {
                     Multipart mp = (Multipart) msg.getContent();
                     BodyPart bp = mp.getBodyPart(0);
                     info = bp.getContent().toString();
-                    msg.setFlag(Flags.Flag.SEEN, true);
-                    break;
+                } catch (Exception e) {
+                    try {
+                        info = msg.getContent().toString();
+                    } catch (Exception exp) {
+                        throw new Exception(exp);
+                    }
                 }
+                msg.setFlag(Flags.Flag.SEEN, true);
+                break;
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
         return info;
     }
@@ -80,43 +82,31 @@ public class MailWorker extends Authenticator {
 
         Session session = Session.getDefaultInstance(props, this);
 
-        try {
-            MimeMessage message = new MimeMessage(session);
+        MimeMessage message = new MimeMessage(session);
 
-            // Кто
-            message.setSender(new InternetAddress(sender));
-            // О чем
-            message.setSubject(subject);
-            // Кому
-            if (recipients.indexOf(',') > 0)
-                message.setRecipients(Message.RecipientType.TO,
-                        InternetAddress.parse(recipients));
-            else
-                message.setRecipient(Message.RecipientType.TO,
-                        new InternetAddress(recipients));
+        message.setSender(new InternetAddress(sender));
+        message.setSubject(subject);
+        if (recipients.indexOf(',') > 0)
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipients));
+        else
+            message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipients));
 
-            // Хочет сказать
-            BodyPart messageBodyPart = new MimeBodyPart();
-            messageBodyPart.setText(body);
-            _multipart.addBodyPart(messageBodyPart);
+        BodyPart messageBodyPart = new MimeBodyPart();
+        messageBodyPart.setText(body);
+        _multipart.addBodyPart(messageBodyPart);
 
-            // И что показать
-            if (!filename.equalsIgnoreCase("")) {
-                BodyPart attachBodyPart = new MimeBodyPart();
-                DataSource source = new FileDataSource(filename);
-                attachBodyPart.setDataHandler(new DataHandler(source));
-                attachBodyPart.setFileName(filename);
+        if (!filename.equalsIgnoreCase("")) {
+            BodyPart attachBodyPart = new MimeBodyPart();
+            DataSource source = new FileDataSource(filename);
+            attachBodyPart.setDataHandler(new DataHandler(source));
+            attachBodyPart.setFileName(filename);
 
-                _multipart.addBodyPart(attachBodyPart);
-            }
-
-            message.setContent(_multipart);
-
-            Transport.send(message);
-        } catch (Exception e) {
-            e.printStackTrace();
-            Log.e(TAG, "Ошибка отправки функцией sendMail!");
+            _multipart.addBodyPart(attachBodyPart);
         }
+
+        message.setContent(_multipart);
+
+        Transport.send(message);
     }
 
 }

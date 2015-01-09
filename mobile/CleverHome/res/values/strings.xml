@@ -43,4 +43,7 @@
     <string name="err_email_pwd_empty">Please, input password for email!</string>
     <string name="err_first_app_run_pwd">Please, input application password!</string>
     <string name="err_bot_email_address_empty">Please, input email address for Raspberry Agent!</string>
+    <string name="err_send_mail">Cannot send message!</string>
+    <string name="err_read_mail">Cannot read message!</string>
+    <string name="err_update">Update failed!</string>
 </resources>
