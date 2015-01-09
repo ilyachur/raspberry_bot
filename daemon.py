@@ -51,7 +51,7 @@ if __name__=='__main__':
         exit('Error config file cannot be found!!!')
 
     # Processor temperature statistic thread
-    #ptd = CommandDaemon(command='/opt/vc/bin/vcgencmd measure_temp', timeout=300,db_name='./site/raspberry_site/db/db.sqlite3', db_function=function_result)
+    ptd = CommandDaemon(command='/opt/vc/bin/vcgencmd measure_temp', timeout=300,db_name='./site/raspberry_site/db/db.sqlite3', db_function=function_result)
     #log.info('Running processor temperature daemon...')
     #ptd.setName('proc_temp')
     #ptd.start()
