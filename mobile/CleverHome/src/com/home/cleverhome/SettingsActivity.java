@@ -52,7 +52,7 @@ public class SettingsActivity extends Activity {
             public void onClick(View view) {
                 if (canCancel()) {
                     if (first) {
-                        Intent myIntent = new Intent(SettingsActivity.this, MenuActivity.class);
+                        Intent myIntent = new Intent(SettingsActivity.this, MainMenuActivity.class);
                         SettingsActivity.this.startActivity(myIntent);
                     }
                     finish();
@@ -108,7 +108,7 @@ public class SettingsActivity extends Activity {
 
 
                     if (first) {
-                        Intent myIntent = new Intent(SettingsActivity.this, MenuActivity.class);
+                        Intent myIntent = new Intent(SettingsActivity.this, MainMenuActivity.class);
                         SettingsActivity.this.startActivity(myIntent);
                     }
                     finish();

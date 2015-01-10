@@ -20,6 +20,9 @@
     <string name="about">О программе</string>
     <string name="exit">Выход</string>
     <string name="settings">Настройки</string>
+    <string name="add">Добавить</string>
+    <string name="edit">Редактировать</string>
+    <string name="remove">Удалить</string>
 
     <!-- Settings menu -->
     <string name="text_input_old_password">Пожалуйста введите старый пароль:</string>
@@ -30,6 +33,7 @@
     <string name="text_input_bot_email">Пожалуйста введите адрес электронной почты для Raspberry:</string>
     <string name="btn_save">Сохранить</string>
     <string name="btn_cancel">Отменить</string>
+    <string name="select_action">Выберите действие</string>
 
     <!-- hints -->
     <string name="hint_input_password">Пожалуйста, введите пароль</string>

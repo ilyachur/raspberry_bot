@@ -33,27 +33,18 @@ public class MainMenuActivity extends Activity {
         finish();
     }
 
-    /*
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main, menu);
-        return true;
+    public void onOpportunities(View view) {
+        Intent myIntent = new Intent(MainMenuActivity.this, OpportunitiesActivity.class);
+        startActivity(myIntent);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        // Операции для выбранного пункта меню
-        switch (item.getItemId()) {
-            case R.id.action_settings:
-                Intent myIntent = new Intent(MainMenuActivity.this, SettingsActivity.class);
-                startActivity(myIntent);
-                break;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-        return true;
+    public void onGPIO(View view) {
+        //Intent myIntent = new Intent(MainMenuActivity.this, OpportunitiesActivity.class);
+        //startActivity(myIntent);
     }
-    */
+
+    public void onAbout(View view) {
+        //Intent myIntent = new Intent(MainMenuActivity.this, OpportunitiesActivity.class);
+        //startActivity(myIntent);
+    }
 }
