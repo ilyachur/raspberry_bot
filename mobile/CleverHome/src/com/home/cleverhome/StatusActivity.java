@@ -21,6 +21,7 @@ import java.util.Date;
 public class StatusActivity extends Activity {
 
     private static final String subtitle = "Status";
+    private static final String body = "GET_STATUS=True";
     private static final String STATUS_INFO = "status_info";
 
     private StatusTaskCompleter completer = new StatusTaskCompleter();
@@ -71,7 +72,7 @@ public class StatusActivity extends Activity {
         menuItem = menu.findItem(R.id.menu_load);
         menuItem.setActionView(R.layout.progressbar);
         menuItem.expandActionView();
-        MailWorkerAsync task = new MailWorkerAsync(this, completer, email_address, email_password, bot_email_address, subtitle);
+        MailWorkerAsync task = new MailWorkerAsync(this, completer, email_address, email_password, bot_email_address, subtitle, body);
         task.execute();
         return true;
     }
@@ -83,7 +84,7 @@ public class StatusActivity extends Activity {
                 menuItem = item;
                 menuItem.setActionView(R.layout.progressbar);
                 menuItem.expandActionView();
-                MailWorkerAsync task = new MailWorkerAsync(this, completer, email_address, email_password, bot_email_address, subtitle);
+                MailWorkerAsync task = new MailWorkerAsync(this, completer, email_address, email_password, bot_email_address, subtitle, body);
                 task.execute();
                 break;
             case R.id.action_settings:

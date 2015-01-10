@@ -80,6 +80,7 @@ public class MainActivity extends Activity {
                     finish();
                 }
             });
+            netDialogBuild.setCancelable(false);
             netDialogBuild.show();
             return false;
         } else
@@ -93,9 +94,9 @@ public class MainActivity extends Activity {
         SharedPreferences.Editor editor = settings.edit();
         editor.putString("app_password", "aaa");
 
-        editor.putString("bot_email_address", "AAAAAAAAAAAAAAA");
+        editor.putString("bot_email_address", "raspberry.home.bot@gmail.com");
         editor.putString("email_address", "ilyachur@gmail.com");
-        editor.putString("email_password", "AAAA");
+        editor.putString("email_password", "Android#4");
 
         editor.commit();
         isNetworkConnected();

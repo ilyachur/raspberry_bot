@@ -16,16 +16,18 @@ public class MailWorkerAsync extends AsyncTask<Object, String, Boolean> {
     private String email_address;
     private String email_password;
     private String subtitle;
+    private String body;
     private String bot_email_address;
     private String info;
     private String error = new String();
 
-    MailWorkerAsync(Context context, OnTaskCompleted listener, String email_addr, String email_pwd, String bot_email, String subtitle) {
+    MailWorkerAsync(Context context, OnTaskCompleted listener, String email_addr, String email_pwd, String bot_email, String subtitle, String body) {
         this.context = context;
         this.listener = listener;
         email_address = email_addr;
         email_password = email_pwd;
         this.subtitle = subtitle;
+        this.body = body;
         bot_email_address = bot_email;
     }
 
@@ -52,7 +54,7 @@ public class MailWorkerAsync extends AsyncTask<Object, String, Boolean> {
         error = "";
         MailWorker sender = new MailWorker(email_address, email_password);
         try {
-            sender.sendMail(subtitle, "GET_STATUS=True", email_address, bot_email_address, "");
+            sender.sendMail(subtitle, body, email_address, bot_email_address, "");
         } catch (Exception e) {
             error = context.getString(R.string.err_send_mail) + " " + e.toString();
             return false;

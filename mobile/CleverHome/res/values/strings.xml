@@ -35,12 +35,18 @@
     <string name="btn_save">Save</string>
     <string name="btn_cancel">Cancel</string>
 
+    <!-- Add menu -->
+    <string name="text_input_name">Please input name for opportunity:</string>
+    <string name="text_input_subtitle">Please input email subtitle for send to bot if necessary:</string>
+    <string name="text_input_commands">Please input commands which necessary for this opportunity:</string>
+
     <!-- hints -->
     <string name="hint_input_password">Please, input password</string>
     <string name="hint_incorrect_password">Incorrect password!</string>
 
     <!-- Errors -->
     <string name="err_not_all_fields">Please, set all fields!</string>
+    <string name="err_name_exists">Name is already exists!</string>
     <string name="err_incorrect_old_pwd">Incorrect old application password!</string>
     <string name="err_confirm_failed">New password and confirm new password fields are not equal!</string>
     <string name="err_email_address_empty">Please, input email address!</string>

@@ -19,5 +19,6 @@
         <activity android:name=".MainMenuActivity"/>
         <activity android:name=".StatusActivity"/>
         <activity android:name=".OpportunitiesActivity"/>
+        <activity android:name=".AddOpportunityActivity"/>
     </application>
 </manifest> 

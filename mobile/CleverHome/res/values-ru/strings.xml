@@ -35,12 +35,18 @@
     <string name="btn_cancel">Отменить</string>
     <string name="select_action">Выберите действие</string>
 
+    <!-- Add menu -->
+    <string name="text_input_name">Пожалуйста введите имя действия:</string>
+    <string name="text_input_subtitle">Пожалуйста введите тему письма для бота, если необходимо:</string>
+    <string name="text_input_commands">Пожалуйста введите команды, которые необходимы данного действия:</string>
+
     <!-- hints -->
     <string name="hint_input_password">Пожалуйста, введите пароль</string>
     <string name="hint_incorrect_password">Неверный пароль!</string>
 
     <!-- Errors -->
     <string name="err_not_all_fields">Пожалуйста, заполните все поля!</string>
+    <string name="err_name_exists">Такое имя уже существует!</string>
     <string name="err_incorrect_old_pwd">Неправильно введен старый пароль!</string>
     <string name="err_confirm_failed">Новый пароль не совпадает с подтверждением пароля!</string>
     <string name="err_email_address_empty">Пожалуйста введите адрес электронной почты!</string>
