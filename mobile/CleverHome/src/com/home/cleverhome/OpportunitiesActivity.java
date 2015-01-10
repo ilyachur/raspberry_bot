@@ -1,6 +1,7 @@
 package com.home.CleverHome;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
@@ -13,7 +14,6 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Map;
 
@@ -24,15 +24,22 @@ public class OpportunitiesActivity extends Activity {
 
     private static final String TAG = "OpportunitiesActivity";
     public static final String OPPORTUNITIES_INFO = "opportunities_info";
+    private String email_address;
+    private String bot_email_address;
+    private String email_password;
 
     private ListView opportunitiesList;
     private ArrayAdapter<String> opportunitiesAdapter;
     ArrayList<String> opportunities = new ArrayList<String>();
 
+    private OpportunitiesTaskCompleter completer = new OpportunitiesTaskCompleter();
+    private Context context;
+
     private SharedPreferences opportunitiesInformation;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        context = this;
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
@@ -53,7 +60,27 @@ public class OpportunitiesActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String item = (String) opportunitiesList.getItemAtPosition(position);
-                Log.d(TAG, item + " выбран");
+
+                Map<String, ?> allEntries = opportunitiesInformation.getAll();
+                for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
+                    if (entry.getKey().split("\\|")[0].equals(item)) {
+                        item = entry.getKey();
+                        break;
+                    }
+                }
+
+                String subtitle;
+                if (item.split("\\|").length > 1) {
+                    subtitle = item.split("\\|")[1];
+                } else {
+                    subtitle = item.split("\\|")[0];
+                }
+
+                String body = opportunitiesInformation.getString(item, "");
+
+
+                MailWorkerAsync task = new MailWorkerAsync(context, completer, email_address, email_password, bot_email_address, subtitle, body);
+                task.execute();
             }
         });
 
@@ -66,6 +93,11 @@ public class OpportunitiesActivity extends Activity {
 
             editor.commit();
         }
+
+        SharedPreferences settings = getSharedPreferences(MainActivity.PREFS_NAME, 0);
+        email_address = settings.getString("email_address", "");
+        bot_email_address = settings.getString("bot_email_address", "");
+        email_password = settings.getString("email_password", "");
     }
 
     @Override
@@ -166,5 +198,18 @@ public class OpportunitiesActivity extends Activity {
         myIntent.putExtra("Name", name);
 
         startActivity(myIntent);
+    }
+
+    private class OpportunitiesTaskCompleter implements OnTaskCompleted{
+
+        @Override
+        public void onTaskCompleted(Object result) {
+
+            if (result.toString().equals("")) {
+                Toast.makeText(context, getString(R.string.err_update), Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(context, result.toString(), Toast.LENGTH_LONG).show();
+            }
+        }
     }
 }
